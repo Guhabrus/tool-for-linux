@@ -53,8 +53,8 @@ bool find(int argc_, char* argv_[])
     else                // Процесс родитель
     {   
         int status = 0;
-        pid_t p_id = wait(&status);
-        if(-1 == p_id){
+        
+        if(-1 == waitpid(f_pid, &status, 0)){
             perror("error\n");
         }
 
