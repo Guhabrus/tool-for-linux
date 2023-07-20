@@ -39,9 +39,9 @@ server_error_t set_addres(char* h_name, char* s_name, struct sockaddr_in* sk_in,
  * @brief 
  * 
  * @param fd_s [in] декриптор принятого сокета
- * @param rcvbufsz [in] размер принимающего буфера
+ * @param peerp [in] указатель на принятый сокет
  */
-void server(SOCKET fd_s,int rcvbufsz);
+void server(SOCKET fd_s,struct sockaddr_in *peerp);
 
 
 /**

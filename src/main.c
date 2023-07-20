@@ -33,10 +33,7 @@ int main(int argc, char* argv[])
 
     SOCKET fd_sin;
     uint32_t peer_len;
-
-    int rcvbufsz = 32*1024;
     
-
 
     do
     {   

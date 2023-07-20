@@ -123,70 +123,35 @@ server_error_t set_addres(char* h_name, char* s_name, struct sockaddr_in* sk_in,
 
 
 
-// void server(SOCKET fd_s,struct sockaddr_in *peerp){
-//     if(NULL == peerp){
-//         print_debug("sacsacqsa\n");
-//         return; 
-//     }
-
-//     uint8_t buf[10];
-//     int res = 0;
-
-//     while (1)
-//     {
-//         res = readrvec(fd_s, buf, sizeof(buf));
-    
-//         if(res < 0){
-//             print_debug(" readvrec  завершилась с ошибкой\n");
-            
-//         }
-//         else if(res == 0){
-//             print_debug("клиент отключился\n");
-//             return;
-//         } 
-//         else{
-//             // send( fd_s, "hello, world\n", 13, 0);
-//             print_debug("data = %s\n", (char*)buf );
-//         }  
-        
-//         bzero(buf, sizeof(buf));
-//     }
-    
-// }
-
-void server(SOCKET fd_s,int rcvbufsz){
- 
-    char *buf;
-    int res = 0;
-
-    if((buf = (char*)malloc(rcvbufsz)) == NULL){
-       return; 
+void server(SOCKET fd_s,struct sockaddr_in *peerp){
+    if(NULL == peerp){
+        print_debug("sacsacqsa\n");
+        return; 
     }
+
+    uint8_t buf[10];
+    int res = 0;
 
     while (1)
     {
-        res = recv(fd_s, buf, rcvbufsz, 0);
+        res = readrvec(fd_s, buf, sizeof(buf));
     
         if(res < 0){
             print_debug(" readvrec  завершилась с ошибкой\n");
-            goto exit;
+            
         }
         else if(res == 0){
             print_debug("клиент отключился\n");
-            goto exit;
+            return;
         } 
         else{
             // send( fd_s, "hello, world\n", 13, 0);
-            print_debug("data = %s\n", buf );
+            print_debug("data = %s\n", (char*)buf );
         }  
         
+        bzero(buf, sizeof(buf));
     }
-
-    exit:
-        if(buf!=NULL){
-            free(buf);
-            return;
-        }
+    
 }
 
 
